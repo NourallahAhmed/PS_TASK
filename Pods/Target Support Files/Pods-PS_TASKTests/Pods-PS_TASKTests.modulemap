@@ -1,0 +1,6 @@
+framework module Pods_PS_TASKTests {
+  umbrella header "Pods-PS_TASKTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
