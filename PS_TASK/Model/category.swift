@@ -15,11 +15,20 @@ struct Category: Codable {
     let Results: [Results]?
 }
 
-struct Results: Codable {
-
-    let ID: Int?
+struct Results: Codable, Identifiable {
+    
+    let id: Int?
     let Name: String?
     let Description: String?
     let ImagePath: String?
     let DisplayOrder: Int?
+
+    private enum CodingKeys: String, CodingKey {
+        case id = "ID"
+        case Name = "Name"
+        case Description = "Description"
+        case ImagePath = "ImagePath"
+        case DisplayOrder = "DisplayOrder"
+    }
+    
 }
