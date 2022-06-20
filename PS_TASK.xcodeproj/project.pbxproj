@@ -9,6 +9,18 @@
 /* Begin PBXBuildFile section */
 		55C9818ACE2007F7FEA1643D /* Pods_PS_TASKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7A25F38B44CE77ABA55F94 /* Pods_PS_TASKTests.framework */; };
 		5AB669D42EB94CE58E6A06BC /* Pods_PS_TASK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45D42E596CCF0D40632148AD /* Pods_PS_TASK.framework */; };
+		9B1640A72860F13600A015D0 /* category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1640A62860F13600A015D0 /* category.swift */; };
+		9B1640A92860F14600A015D0 /* items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1640A82860F14600A015D0 /* items.swift */; };
+		9B1640AB2860F15800A015D0 /* products.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1640AA2860F15800A015D0 /* products.swift */; };
+		9B1640AD2860F16A00A015D0 /* combo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1640AC2860F16A00A015D0 /* combo.swift */; };
+		9B1640B02860F8B800A015D0 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1640AF2860F8B800A015D0 /* NetworkAPI.swift */; };
+		9B1640B22860F8CB00A015D0 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1640B12860F8CB00A015D0 /* NetworkRequest.swift */; };
+		9B1640B52860F8E900A015D0 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1640B42860F8E900A015D0 /* BaseAPI.swift */; };
+		9B1640B72860F8FA00A015D0 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1640B62860F8FA00A015D0 /* TargetType.swift */; };
+		9B1640BB2861050500A015D0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1640BA2861050500A015D0 /* HomeViewModel.swift */; };
+		9B1640BE2861052400A015D0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1640BD2861052400A015D0 /* HomeView.swift */; };
+		9B1640C22861059B00A015D0 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1640C12861059A00A015D0 /* DetailsViewModel.swift */; };
+		9B1640C5286105BF00A015D0 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1640C4286105BE00A015D0 /* DetailsView.swift */; };
 		9B63B0DC2860BA190074B85A /* PS_TASKApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B63B0DB2860BA190074B85A /* PS_TASKApp.swift */; };
 		9B63B0DE2860BA190074B85A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B63B0DD2860BA190074B85A /* ContentView.swift */; };
 		9B63B0E02860BA1D0074B85A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B63B0DF2860BA1D0074B85A /* Assets.xcassets */; };
@@ -44,6 +56,18 @@
 		51422B81F1186D4F33416641 /* Pods-PS_TASK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PS_TASK.debug.xcconfig"; path = "Target Support Files/Pods-PS_TASK/Pods-PS_TASK.debug.xcconfig"; sourceTree = "<group>"; };
 		542DB1BA57878A52873DE9B0 /* Pods_PS_TASK_PS_TASKUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PS_TASK_PS_TASKUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CE086AA71E5D4552EBF1C53 /* Pods-PS_TASKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PS_TASKTests.debug.xcconfig"; path = "Target Support Files/Pods-PS_TASKTests/Pods-PS_TASKTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9B1640A62860F13600A015D0 /* category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = category.swift; sourceTree = "<group>"; };
+		9B1640A82860F14600A015D0 /* items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = items.swift; sourceTree = "<group>"; };
+		9B1640AA2860F15800A015D0 /* products.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = products.swift; sourceTree = "<group>"; };
+		9B1640AC2860F16A00A015D0 /* combo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = combo.swift; sourceTree = "<group>"; };
+		9B1640AF2860F8B800A015D0 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
+		9B1640B12860F8CB00A015D0 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		9B1640B42860F8E900A015D0 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
+		9B1640B62860F8FA00A015D0 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
+		9B1640BA2861050500A015D0 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		9B1640BD2861052400A015D0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		9B1640C12861059A00A015D0 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
+		9B1640C4286105BE00A015D0 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		9B63B0D82860BA190074B85A /* PS_TASK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PS_TASK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B63B0DB2860BA190074B85A /* PS_TASKApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PS_TASKApp.swift; sourceTree = "<group>"; };
 		9B63B0DD2860BA190074B85A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,7 +122,6 @@
 				8CE086AA71E5D4552EBF1C53 /* Pods-PS_TASKTests.debug.xcconfig */,
 				34F507C6414FAB6E7AD7BC4E /* Pods-PS_TASKTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -110,6 +133,103 @@
 				FA7A25F38B44CE77ABA55F94 /* Pods_PS_TASKTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9B1640A32860F0F700A015D0 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				9B1640B32860F8D500A015D0 /* Base */,
+				9B1640AE2860F87100A015D0 /* APIConnection */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		9B1640A42860F10B00A015D0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9B1640A62860F13600A015D0 /* category.swift */,
+				9B1640A82860F14600A015D0 /* items.swift */,
+				9B1640AA2860F15800A015D0 /* products.swift */,
+				9B1640AC2860F16A00A015D0 /* combo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9B1640A52860F11700A015D0 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				9B1640BF2861052C00A015D0 /* DetailsPage */,
+				9B1640B8286104E600A015D0 /* HomePage */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		9B1640AE2860F87100A015D0 /* APIConnection */ = {
+			isa = PBXGroup;
+			children = (
+				9B1640AF2860F8B800A015D0 /* NetworkAPI.swift */,
+				9B1640B12860F8CB00A015D0 /* NetworkRequest.swift */,
+			);
+			path = APIConnection;
+			sourceTree = "<group>";
+		};
+		9B1640B32860F8D500A015D0 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				9B1640B42860F8E900A015D0 /* BaseAPI.swift */,
+				9B1640B62860F8FA00A015D0 /* TargetType.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		9B1640B8286104E600A015D0 /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				9B1640BC2861051400A015D0 /* View */,
+				9B1640B9286104F000A015D0 /* ViewModel */,
+			);
+			path = HomePage;
+			sourceTree = "<group>";
+		};
+		9B1640B9286104F000A015D0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9B1640BA2861050500A015D0 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9B1640BC2861051400A015D0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9B1640BD2861052400A015D0 /* HomeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9B1640BF2861052C00A015D0 /* DetailsPage */ = {
+			isa = PBXGroup;
+			children = (
+				9B1640C3286105A400A015D0 /* DetailsView */,
+				9B1640C02861057B00A015D0 /* DetailsViewModel */,
+			);
+			path = DetailsPage;
+			sourceTree = "<group>";
+		};
+		9B1640C02861057B00A015D0 /* DetailsViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9B1640C12861059A00A015D0 /* DetailsViewModel.swift */,
+			);
+			path = DetailsViewModel;
+			sourceTree = "<group>";
+		};
+		9B1640C3286105A400A015D0 /* DetailsView */ = {
+			isa = PBXGroup;
+			children = (
+				9B1640C4286105BE00A015D0 /* DetailsView.swift */,
+			);
+			path = DetailsView;
 			sourceTree = "<group>";
 		};
 		9B63B0CF2860BA190074B85A = {
@@ -137,6 +257,9 @@
 		9B63B0DA2860BA190074B85A /* PS_TASK */ = {
 			isa = PBXGroup;
 			children = (
+				9B1640A52860F11700A015D0 /* Modules */,
+				9B1640A42860F10B00A015D0 /* Model */,
+				9B1640A32860F0F700A015D0 /* NetworkService */,
 				9B63B0DB2860BA190074B85A /* PS_TASKApp.swift */,
 				9B63B0DD2860BA190074B85A /* ContentView.swift */,
 				9B63B0DF2860BA1D0074B85A /* Assets.xcassets */,
@@ -414,7 +537,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B1640B72860F8FA00A015D0 /* TargetType.swift in Sources */,
+				9B1640C5286105BF00A015D0 /* DetailsView.swift in Sources */,
+				9B1640BB2861050500A015D0 /* HomeViewModel.swift in Sources */,
+				9B1640A92860F14600A015D0 /* items.swift in Sources */,
+				9B1640AB2860F15800A015D0 /* products.swift in Sources */,
+				9B1640C22861059B00A015D0 /* DetailsViewModel.swift in Sources */,
+				9B1640B22860F8CB00A015D0 /* NetworkRequest.swift in Sources */,
+				9B1640B52860F8E900A015D0 /* BaseAPI.swift in Sources */,
+				9B1640AD2860F16A00A015D0 /* combo.swift in Sources */,
+				9B1640B02860F8B800A015D0 /* NetworkAPI.swift in Sources */,
 				9B63B0DE2860BA190074B85A /* ContentView.swift in Sources */,
+				9B1640BE2861052400A015D0 /* HomeView.swift in Sources */,
+				9B1640A72860F13600A015D0 /* category.swift in Sources */,
 				9B63B0DC2860BA190074B85A /* PS_TASKApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
