@@ -21,6 +21,8 @@
 		9B1640BE2861052400A015D0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1640BD2861052400A015D0 /* HomeView.swift */; };
 		9B1640C22861059B00A015D0 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1640C12861059A00A015D0 /* DetailsViewModel.swift */; };
 		9B1640C5286105BF00A015D0 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1640C4286105BE00A015D0 /* DetailsView.swift */; };
+		9B589CF52862945600341AF2 /* IngridentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B589CF42862945600341AF2 /* IngridentsView.swift */; };
+		9B589CFA286296F700341AF2 /* IngredientsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B589CF9286296F700341AF2 /* IngredientsViewModel.swift */; };
 		9B63B0DC2860BA190074B85A /* PS_TASKApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B63B0DB2860BA190074B85A /* PS_TASKApp.swift */; };
 		9B63B0DE2860BA190074B85A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B63B0DD2860BA190074B85A /* ContentView.swift */; };
 		9B63B0E02860BA1D0074B85A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B63B0DF2860BA1D0074B85A /* Assets.xcassets */; };
@@ -68,6 +70,9 @@
 		9B1640BD2861052400A015D0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		9B1640C12861059A00A015D0 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		9B1640C4286105BE00A015D0 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		9B589CF228627A0700341AF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9B589CF42862945600341AF2 /* IngridentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngridentsView.swift; sourceTree = "<group>"; };
+		9B589CF9286296F700341AF2 /* IngredientsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsViewModel.swift; sourceTree = "<group>"; };
 		9B63B0D82860BA190074B85A /* PS_TASK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PS_TASK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B63B0DB2860BA190074B85A /* PS_TASKApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PS_TASKApp.swift; sourceTree = "<group>"; };
 		9B63B0DD2860BA190074B85A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -158,6 +163,7 @@
 		9B1640A52860F11700A015D0 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				9B589CF6286296BF00341AF2 /* IngredientsPage */,
 				9B1640BF2861052C00A015D0 /* DetailsPage */,
 				9B1640B8286104E600A015D0 /* HomePage */,
 			);
@@ -232,9 +238,35 @@
 			path = DetailsView;
 			sourceTree = "<group>";
 		};
+		9B589CF6286296BF00341AF2 /* IngredientsPage */ = {
+			isa = PBXGroup;
+			children = (
+				9B589CF8286296D700341AF2 /* IngredientsViewModel */,
+				9B589CF7286296D000341AF2 /* View */,
+			);
+			path = IngredientsPage;
+			sourceTree = "<group>";
+		};
+		9B589CF7286296D000341AF2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9B589CF42862945600341AF2 /* IngridentsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9B589CF8286296D700341AF2 /* IngredientsViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9B589CF9286296F700341AF2 /* IngredientsViewModel.swift */,
+			);
+			path = IngredientsViewModel;
+			sourceTree = "<group>";
+		};
 		9B63B0CF2860BA190074B85A = {
 			isa = PBXGroup;
 			children = (
+				9B589CF228627A0700341AF2 /* Info.plist */,
 				9B63B0DA2860BA190074B85A /* PS_TASK */,
 				9B63B0EB2860BA1E0074B85A /* PS_TASKTests */,
 				9B63B0F52860BA1E0074B85A /* PS_TASKUITests */,
@@ -550,6 +582,8 @@
 				9B63B0DE2860BA190074B85A /* ContentView.swift in Sources */,
 				9B1640BE2861052400A015D0 /* HomeView.swift in Sources */,
 				9B1640A72860F13600A015D0 /* category.swift in Sources */,
+				9B589CFA286296F700341AF2 /* IngredientsViewModel.swift in Sources */,
+				9B589CF52862945600341AF2 /* IngridentsView.swift in Sources */,
 				9B63B0DC2860BA190074B85A /* PS_TASKApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -711,7 +745,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PS_TASK/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = /Users/nourallahahmed/Documents/GitHub/PS_TASK/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -740,7 +775,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PS_TASK/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = /Users/nourallahahmed/Documents/GitHub/PS_TASK/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

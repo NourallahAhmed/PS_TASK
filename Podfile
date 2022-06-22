@@ -7,7 +7,7 @@ target 'PS_TASK' do
 
   # Pods for PS_TASK
     pod 'Alamofire','~> 5.0.0-rc.2'
-    pod 'Kingfisher', '~> 5.0'
+    pod 'Kingfisher', '~> 7.0'
     
   target 'PS_TASKTests' do
     inherit! :search_paths

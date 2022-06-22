@@ -23,9 +23,9 @@ struct Items: Codable {
     }
 }
 
-struct ItemsResults : Codable {
+struct ItemsResults : Codable , Identifiable {
     
-    let ID: Int?
+    let id : Int?
     let Name: String?
     let Description: String?
     let ImagePath: String?
@@ -43,4 +43,25 @@ struct ItemsResults : Codable {
     let Calories: String?
     let IsFavorite: Bool?
     let IsCustomizeable: Bool?
+    
+    private enum CodingKeys: String, CodingKey {
+            case id = "ID"
+            case Name = "Name"
+            case Description = "Description"
+            case ImagePath = "ImagePath"
+            case DefaultPrice = "DefaultPrice"
+            case ComboDefaultPrice = "ComboDefaultPrice"
+            case ItemType = "ItemType"
+            case DisplayOrder = "DisplayOrder"
+            case IsSpicy = "IsSpicy"
+            case IsLto = "IsLto"
+            case LTOName = "LTOName"
+            case HaveACombo = "HaveACombo"
+            case HaveSizes = "HaveSizes"
+            case IsOnlyACombo = "IsOnlyACombo"
+            case ComboID = "ComboID"
+            case Calories = "Calories"
+            case IsFavorite = "IsFavorite"
+            case IsCustomizeable = "IsCustomizeable"
+        }
 }

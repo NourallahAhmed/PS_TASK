@@ -9,51 +9,62 @@ import Foundation
 
 import SwiftUI
 import QGrid
+import Kingfisher
+
 
 struct HomeView: View {
     
-            
-    var dummy :[ Results] = [
-        Results(id: 23, Name:  "WRAPS", Description: "Golden tender pieces with signature 8 peppers sauce in a fresh nan bread, for a new Texas twist", ImagePath: "http://Txsrv_v5.psdigital.me/ImageRepository/NWrap.png", DisplayOrder: 2),
-           Results(id: 23, Name: "CHICKEN MEALS", Description: "Golden tender pieces with signature 8 peppers sauce in a fresh nan bread, for a new Texas twist", ImagePath: "http://Txsrv_v5.psdigital.me/ImageRepository/NChickenMeals.png", DisplayOrder: 2),
-           Results(id: 23, Name: "test", Description: "Golden tender pieces with signature 8 peppers sauce in a fresh nan bread, for a new Texas twist", ImagePath: "test", DisplayOrder: 2),
-           Results(id: 23, Name: "test", Description: "test", ImagePath: "test", DisplayOrder: 2),     Results(id: 23, Name:  "WRAPS", Description: "Golden tender pieces with signature 8 peppers sauce in a fresh nan bread, for a new Texas twist", ImagePath: "http://Txsrv_v5.psdigital.me/ImageRepository/NWrap.png", DisplayOrder: 2),
-        Results(id: 23, Name: "CHICKEN MEALS", Description: "Golden tender pieces with signature 8 peppers sauce in a fresh nan bread, for a new Texas twist", ImagePath: "http://Txsrv_v5.psdigital.me/ImageRepository/NChickenMeals.png", DisplayOrder: 2),
-        Results(id: 23, Name: "test", Description: "Golden tender pieces with signature 8 peppers sauce in a fresh nan bread, for a new Texas twist", ImagePath: "test", DisplayOrder: 2),
-        Results(id: 23, Name: "test", Description: "test", ImagePath: "test", DisplayOrder: 2)]
+    @ObservedObject var homeViewModel = HomeViewModel()
+    @State var title = "Home"
+    init(){
+        self.homeViewModel.getCategory()
+       
+        homeViewModel.getItems(categoryId: String( homeViewModel.CategoryList.first?.id ?? 0 ) )
+
+        self.title = homeViewModel.CategoryList.first?.Name ?? "home"
+
+    }
     var body: some View {
+        if homeViewModel.NetworkState {
+    NavigationView{
         VStack {
             ScrollView{
                 ScrollView (.horizontal) {
                     
                     HStack( spacing: 15){
-                    
-                        ForEach(0 ..< 15) { item in
+                    //MARK: Category
+                        ForEach(self.homeViewModel.CategoryList) { item in
                             VStack{
                                 Spacer()
-                                Image(systemName: "cart")
+                                KFImage(URL(string: item.ImagePath ?? "" ))
+                                    .placeholder { Image("default") }
+
                                     .resizable()
+                                    .aspectRatio(contentMode: .fit)
                                     .shadow(color: .primary, radius: 3)
                                     .clipShape(Circle())
                                     .frame(width: 90, height: 90)
                                     .padding(.top)
                                 Spacer()
-                                Text("hello").padding(.bottom)
-                            }.frame(width: 100, height: 130)
-                                .background(Color.white)
-                                .cornerRadius(16)
-                                .shadow(color: Color.gray, radius: 3, x: 0, y: 3)
+                                Text(item.Name ?? "nil")
+                                    .padding(.bottom)
+                                
+                            }.shadow(color: Color.gray, radius: 3, x: 0, y: 3)
                                 .padding(2)
+                                .onTapGesture {
+                                    print(item.id ?? "nil")
+                                    self.title = item.Name ?? "Home"
+                                    //TODO: Sending category id to fetch data
+                                    homeViewModel.getItems(categoryId: String(item.id ?? 0 ) )
+                                }
                         }
-                    }
+                    } // .padding(.bottom)
                 }.frame(height: 140)
                 .padding([.bottom , .leading ,.trailing])
-                Text("Welcome")
-                
                 ScrollView (.vertical) {
-                    
+                    //MARK: Items Details
                     VStack{
-                        QGrid(self.dummy, columns: 2) {
+                        QGrid(homeViewModel.ItemsList, columns: 2) {
                             
                             GridCell(newResult: $0)
                             
@@ -78,6 +89,25 @@ struct HomeView: View {
             .background(Color.blue)
             .frame(maxWidth: .infinity)
             }
+        }.navigationBarTitle(Text(self.title),displayMode: .inline)
+//            .navigationBarTitle {
+//                print("clicked")
+//            } label: {
+//                Image(systemName: "bag.fill")
+//            }
+    }  .refreshable {
+        
+        self.homeViewModel.getCategory()
+        }
+
+            
+        }else{
+            VStack {
+                KFImage(URL(string: "https://i.pinimg.com/564x/8e/0f/14/8e0f14accd8523a1ea5c8a8b6339a005.jpg"))
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            }
+            
         }
         
     }
@@ -85,19 +115,30 @@ struct HomeView: View {
 
 
 
-
+//MARK: GridCell
 struct GridCell: View {
-    var newResult :Results
+    var newResult : ItemsResults
+    @State var isCustomizable : Bool = false
+    @State var isActive : Bool = false
+    @State var isActiveNav : Bool = false
+
+    @State var IsCustomColor : Color = Color.blue
 
   var body: some View {
     VStack() {
+        NavigationLink(destination: IngridentsView(ingridentsID: newResult.id!),
+                       isActive: self.$isActiveNav) {
+            EmptyView() }
+        
         HStack{
             Spacer()
             Image(systemName: "star")
                 .frame(width:50,height:50)
                 .foregroundColor(.yellow)
         }
-        Image(systemName: "cart")
+        KFImage(URL(string: newResult.ImagePath ?? ""))
+            .placeholder { Image("default") }
+
         .resizable()
         .scaledToFit()
         .padding([.horizontal, .top], 7)
@@ -105,10 +146,10 @@ struct GridCell: View {
         
         Text(newResult.Name ?? "nil" )
             .font(Font.headline)
-            
-        
-        Text("24 CAL" )
-            .font(Font.headline)
+//
+//        MARK: Empty from network
+//        Text( "\(newResult.Calories ?? "nil") CAL" )
+//            .font(Font.headline)
         
         Text(newResult.Description ?? "nil").multilineTextAlignment(.center)
             .font(Font.subheadline)
@@ -135,41 +176,56 @@ struct GridCell: View {
             Spacer(minLength: 5)
         }
         
-        Text("2.4 DB").multilineTextAlignment(.center)
-            .font(Font.headline)
-            .foregroundColor(.red)
+//        Text("2.4 DB").multilineTextAlignment(.center)
+//            .font(Font.headline)
+//            .foregroundColor(.red)
 
         HStack{
             Button(action: {
-                print("pressed")
+                if newResult.IsCustomizeable!{
+                    self.isCustomizable = true
+                    self.isActive.toggle()
+                    IsCustomColor = Color.blue
+
+                }else{
+                    self.isCustomizable = false
+                    IsCustomColor = Color.gray
+
+                }
+
             }) {
                 Text("Customize")
-                    
-            }
-            
-            .frame(height:25)
+                }
+            .background(NavigationLink(destination: DetailsView(), isActive: $isActive) { EmptyView() })
+            .disabled(self.isCustomizable)
+            .frame(height:30)
             .foregroundColor(.white)
-            .background(Color.blue)
+            .background(IsCustomColor)
             .cornerRadius(5)
             
+        
+            Spacer()
             Button(action: {
                 print("pressed")
             }) {
                 Text("+ Add ")
                     
-            }.frame(height:25)
+            }.frame(height:30)
             .foregroundColor(.white)
             .background(Color.blue)
             .cornerRadius(5)
         }.padding()
     }.background(Color.white)
-//          .cornerRadius(16)
-//          .shadow(color: Color.gray, radius: 3, x: 0, y: 3)
           .border(Color.gray)
           .padding(5)
           .frame(height: UIScreen.main.bounds.height / 2 )
-  }
+          .onTapGesture {
+              self.isActiveNav = true
+          }
+        
 }
+  }
+
 
 
 

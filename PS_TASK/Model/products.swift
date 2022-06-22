@@ -49,9 +49,9 @@ struct ProductSizes: Codable {
     let DisplayOrder: Int?
 }
 
-struct Ingredients: Codable {
+struct Ingredients: Codable  , Identifiable{
 
-    let ID: Int?
+    let id: Int?
     let Name: String?
     let Description: String?
     let ImagePath: String?
@@ -59,6 +59,17 @@ struct Ingredients: Codable {
     let DisplayOrder: Int?
     let QuantityMax: Int?
     let QuantityDefault: Int?
+    private enum CodingKeys: String, CodingKey {
+        case id = "ID"
+        case Name = "Name"
+        case Description = "Description"
+        case ImagePath = "ImagePath"
+        case DefaultPrice = "DefaultPrice"
+        case DisplayOrder = "DisplayOrder"
+        case QuantityMax = "QuantityMax"
+        case QuantityDefault = "QuantityDefault"
+    }
+
 }
 
 struct Sauces: Codable {
