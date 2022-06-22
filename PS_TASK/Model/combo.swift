@@ -105,8 +105,8 @@ struct ChickenPieces: Codable {
     let QuantityDefault: Int?
     let Ingredients: [Ingredients]?
 }
-struct Sizes: Codable {
-    let ID: Int?
+struct Sizes: Codable  , Identifiable {
+    let id: Int?
     let Name: String?
     let DefaultPrice: Double?
     let DisplayOrder: Int?
@@ -125,6 +125,29 @@ struct Sizes: Codable {
     let BiscuitsQuantityDefault: Int?
     let SaucesQuantityMax: Int?
     let SaucesQuantityDefault: Int?
+    
+    private enum CodingKeys: String, CodingKey {
+        case id = "ID"
+        case Name = "Name"
+        case DefaultPrice = "DefaultPrice"
+        case DisplayOrder = "DisplayOrder"
+        case IsDefault = "IsDefault"
+        case DrinksQuantityMax = "DrinksQuantityMax"
+        case DrinksQuantityDefault = "DrinksQuantityDefault"
+        case SidesQuantityMax = "SidesQuantityMax"
+        case SidesQuantityDefault = "SidesQuantityDefault"
+        case DessertsQuantityMax = "DessertsQuantityMax"
+        case DessertsQuantityDefault = "DessertsQuantityDefault"
+        case SandwishsQuantityMax = "SandwishsQuantityMax"
+        case SandwishsQuantityDefault = "SandwishsQuantityDefault"
+        case ChickenPiecesQuantityMax = "ChickenPiecesQuantityMax"
+        case ChickenPiecesQuantityDefault = "ChickenPiecesQuantityDefault"
+        case BiscuitsQuantityMax = "BiscuitsQuantityMax"
+        case BiscuitsQuantityDefault = "BiscuitsQuantityDefault"
+        case SaucesQuantityMax = "SaucesQuantityMax"
+        case SaucesQuantityDefault = "SaucesQuantityDefault"
+    }
+
 }
 
 

@@ -71,7 +71,7 @@ extension HomeViewModel : ItemsVMProtocol{
 
                 }
                 self?.networkApiItem.getItemsDetails(Categoryid: categoryId , completion: { result in
-                    self?.ItemsList = try!  result.get()?.itemsResults ?? []
+                    self?.ItemsList = try?  result.get()?.itemsResults //?? []
                 })
             }
             else{

@@ -30,15 +30,13 @@ struct HomeView: View {
         VStack {
             ScrollView{
                 ScrollView (.horizontal) {
-                    
-                    HStack( spacing: 15){
+                    LazyHStack( spacing: 15){
                     //MARK: Category
                         ForEach(self.homeViewModel.CategoryList) { item in
                             VStack{
                                 Spacer()
                                 KFImage(URL(string: item.ImagePath ?? "" ))
-                                    .placeholder { Image("default") }
-
+                                    .placeholder { Image("default").frame(width: 50, height: 70) }
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .shadow(color: .primary, radius: 3)
@@ -137,7 +135,8 @@ struct GridCell: View {
                 .foregroundColor(.yellow)
         }
         KFImage(URL(string: newResult.ImagePath ?? ""))
-            .placeholder { Image("default") }
+        
+        .placeholder { Image("default").frame(width: 50, height: 70)}
 
         .resizable()
         .scaledToFit()
