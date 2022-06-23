@@ -50,7 +50,7 @@ protocol ComboComponent {
     var Name: String? { get }
     var Description: String? { get }
     var ImagePath: String? { get }
-    var DefaultPrice: Int? { get }
+//    var DefaultPrice: Int? { get }
     var IsDefault: Bool? { get }
     var ItemType: Int? { get }
     var DisplayOrder: Int? { get }
@@ -121,24 +121,58 @@ struct Biscuits: Codable , Identifiable , ComboComponent{
 
 
 
-struct Sides: Codable {
-
-    let ID: Int?
-    let ProductID: Int?
-    let Name: String?
-    let Description: String?
-    let ImagePath: String?
-    let DefaultPrice: Int?
-    let IsDefault: Bool?
-    let ItemType: Int?
-    let DisplayOrder: Int?
-    let IsSpicy: Bool?
-    let IsLTO: Bool?
-    let LTOName: String?
-    let Size: Int?
-    let QuantityMax: Int?
-    let QuantityDefault: Int?
-    let Ingredients: [Ingredients]?
+struct Sides: Codable  , ComboComponent , Identifiable{
+    var id: Int?
+    
+    var ProductID: Int?
+    
+    var Name: String?
+    
+    var Description: String?
+    
+    var ImagePath: String?
+    
+    var DefaultPrice: Int?
+    
+    var IsDefault: Bool?
+    
+    var ItemType: Int?
+    
+    var DisplayOrder: Int?
+    
+    var IsSpicy: Bool?
+    
+    var IsLTO: Bool?
+    
+    var LTOName: String?
+    
+    var Size: Int?
+    
+    var QuantityMax: Int?
+    
+    var QuantityDefault: Int?
+    
+    var Ingredients: [Ingredients]?
+    
+  private enum CodingKeys: String, CodingKey {
+        case id = "ID"
+        case ProductID = "ProductID"
+        case Name = "Name"
+        case Description = "Description"
+        case ImagePath = "ImagePath"
+        case DefaultPrice = "DefaultPrice"
+        case IsDefault = "IsDefault"
+        case ItemType = "ItemType"
+        case DisplayOrder = "DisplayOrder"
+        case IsSpicy = "IsSpicy"
+        case IsLTO = "IsLTO"
+        case LTOName = "LTOName"
+        case Size = "Size"
+        case QuantityMax = "QuantityMax"
+        case QuantityDefault = "QuantityDefault"
+        case Ingredients = "Ingredients"
+    }
+    
 }
 struct ChickenPieces: Codable , Identifiable , ComboComponent{
     var id: Int?
@@ -293,7 +327,7 @@ struct Drinks: Codable  , Identifiable , ComboComponent{
         case Ingredients = "Ingredients"
     }
 }
-struct Sandwiches: Codable, Identifiable , ComboComponent {
+struct Sandwiches: Codable, Identifiable , ComboComponent{
     var id: Int?
     
     var ProductID: Int?

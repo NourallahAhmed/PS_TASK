@@ -12,10 +12,15 @@ import QGrid
 
 struct DetailsView: View {
     var comboID : Int?
+    var saucesList = [Sauces]()
+    var saucesSet = Set<Sauces> ()
     @ObservedObject var detailsViewModel  = DetailsViewModel()
     init(comboID: Int){
         self.comboID = comboID
         self.detailsViewModel.getCustomizeProduct(comoboID: String(comboID))
+        saucesSet = Set(detailsViewModel.ComboList?.Sauces  ?? [])
+        saucesList = Array(saucesSet)
+
     }
     var body : some View{
         ScrollView{
@@ -87,16 +92,47 @@ struct DetailsView: View {
             
             //MARK: PART 4 :  Sauces
 
-            Section{
+            ScrollView{
                 VStack{
                     QGrid(detailsViewModel.ComboList?.Sauces ?? [], columns: 2) {
+
+                   GridCell2(newResult: $0)
+
+                    }
+                }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height )
+            }
+            
+            
+            
+            //MARK: PART 5 :  Drinks
+
+            ScrollView{
+                VStack{
+                    QGrid(detailsViewModel.ComboList?.Drinks ?? [], columns: 2) {
 
                     GridCell2(newResult: $0)
 
                     }
                 }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height )
             }
-            
+            ScrollView{
+                VStack{
+                    QGrid(detailsViewModel.ComboList?.Sides ?? [], columns: 2) {
+
+                    GridCell2(newResult: $0)
+
+                    }
+                }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height )
+            }
+            ScrollView{
+                VStack{
+                    QGrid(detailsViewModel.ComboList?.Sandwiches ?? [], columns: 2) {
+
+                    GridCell2(newResult: $0)
+
+                    }
+                }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height )
+            }
         }
     }
 }
@@ -105,7 +141,7 @@ struct DetailsView: View {
 
 //MARK: GridCell
 struct GridCell2: View {
-    var newResult : ComboComponent 
+    var newResult : ComboComponent
     @State var counter = 0
     var body: some View {
     VStack() {
@@ -134,7 +170,7 @@ struct GridCell2: View {
                 counter += 1
                 
             }) {
-                Text(" + ").padding()
+                Text("+").padding()
                     
             }.frame(height:30)
             .foregroundColor(.white)
@@ -147,7 +183,7 @@ struct GridCell2: View {
                 counter -= 1
                 
             }) {
-                Text(" - ").padding()
+                Text("-").padding()
                     
             }.frame(height:30)
             .foregroundColor(.white)

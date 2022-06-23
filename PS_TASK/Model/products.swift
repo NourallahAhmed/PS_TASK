@@ -49,7 +49,8 @@ struct ProductSizes: Codable {
     let DisplayOrder: Int?
 }
 
-struct Ingredients: Codable  , Identifiable{
+struct Ingredients: Codable  , Identifiable , Hashable{
+    
 
     let id: Int?
     let Name: String?
@@ -72,7 +73,25 @@ struct Ingredients: Codable  , Identifiable{
 
 }
 
-struct Sauces: Codable , Identifiable , ComboComponent{
+struct Sauces: Codable , Identifiable , ComboComponent , Hashable{
+    static func == (lhs: Sauces, rhs: Sauces) -> Bool {
+        lhs.Name == rhs.Name &&
+        lhs.ProductID == rhs.ProductID &&
+        lhs.Description == rhs.Description &&
+        lhs.DisplayOrder == rhs.DisplayOrder &&
+        lhs.QuantityDefault == rhs.QuantityDefault &&
+        lhs.IsSpicy == rhs.IsSpicy &&
+        lhs.IsLTO == rhs.IsLTO &&
+        lhs.IsDefault == rhs.IsDefault &&
+        lhs.ImagePath == rhs.ImagePath &&
+        lhs.Ingredients == rhs.Ingredients &&
+        lhs.ItemType == rhs.ItemType &&
+        lhs.Size == rhs.Size &&
+        lhs.QuantityMax == rhs.QuantityMax
+
+    }
+    
+    
     var id: Int?
     
     var ProductID: Int?
@@ -83,7 +102,7 @@ struct Sauces: Codable , Identifiable , ComboComponent{
     
     var ImagePath: String?
     
-    var DefaultPrice: Int?
+//    var DefaultPrice: Int?
     
     var IsDefault: Bool?
     
@@ -114,7 +133,7 @@ struct Sauces: Codable , Identifiable , ComboComponent{
         case Name = "Name"
         case Description = "Description"
         case ImagePath = "ImagePath"
-        case DefaultPrice = "DefaultPrice"
+//        case DefaultPrice = "DefaultPrice"
         case IsDefault = "IsDefault"
         case ItemType = "ItemType"
         case DisplayOrder = "DisplayOrder"
