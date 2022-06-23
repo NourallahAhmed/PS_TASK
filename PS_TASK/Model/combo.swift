@@ -44,24 +44,78 @@ struct ComboResults: Codable {
     let IsCustomizeable: Bool?
 }
 
-struct Biscuits: Codable {
+protocol ComboComponent {
+    var id: Int? { get }
+    var ProductID: Int? { get }
+    var Name: String? { get }
+    var Description: String? { get }
+    var ImagePath: String? { get }
+    var DefaultPrice: Int? { get }
+    var IsDefault: Bool? { get }
+    var ItemType: Int? { get }
+    var DisplayOrder: Int? { get }
+    var IsSpicy: Bool? { get }
+    var IsLTO: Bool? { get }
+    var LTOName: String? { get }
+    var Size: Int? { get }
+    var QuantityMax: Int? { get }
+    var QuantityDefault: Int? { get }
+    var Ingredients: [Ingredients]? { get }
 
-    let ID: Int?
-    let ProductID: Int?
-    let Name: String?
-    let Description: String?
-    let ImagePath: String?
-    let DefaultPrice: Int?
-    let IsDefault: Bool?
-    let ItemType: Int?
-    let DisplayOrder: Int?
-    let IsSpicy: Bool?
-    let IsLTO: Bool?
-    let LTOName: String?
-    let Size: Int?
-    let QuantityMax: Int?
-    let QuantityDefault: Int?
-    let Ingredients: [Ingredients]?
+}
+struct Biscuits: Codable , Identifiable , ComboComponent{
+    var id: Int?
+    
+    var ProductID: Int?
+    
+    var Name: String?
+    
+    var Description: String?
+    
+    var ImagePath: String?
+    
+    var DefaultPrice: Int?
+    
+    var IsDefault: Bool?
+    
+    var ItemType: Int?
+    
+    var DisplayOrder: Int?
+    
+    var IsSpicy: Bool?
+    
+    var IsLTO: Bool?
+    
+    var LTOName: String?
+    
+    var Size: Int?
+    
+    var QuantityMax: Int?
+    
+    var QuantityDefault: Int?
+    
+    var Ingredients: [Ingredients]?
+    
+  private enum CodingKeys: String, CodingKey {
+        case id = "ID"
+        case ProductID = "ProductID"
+        case Name = "Name"
+        case Description = "Description"
+        case ImagePath = "ImagePath"
+        case DefaultPrice = "DefaultPrice"
+        case IsDefault = "IsDefault"
+        case ItemType = "ItemType"
+        case DisplayOrder = "DisplayOrder"
+        case IsSpicy = "IsSpicy"
+        case IsLTO = "IsLTO"
+        case LTOName = "LTOName"
+        case Size = "Size"
+        case QuantityMax = "QuantityMax"
+        case QuantityDefault = "QuantityDefault"
+        case Ingredients = "Ingredients"
+    }
+
+   
 
 }
 
@@ -86,26 +140,59 @@ struct Sides: Codable {
     let QuantityDefault: Int?
     let Ingredients: [Ingredients]?
 }
-struct ChickenPieces: Codable {
-
-    let ID: Int?
-    let ProductID: Int?
-    let Name: String?
-    let Description: String?
-    let ImagePath: String?
-    let DefaultPrice: Int?
-    let IsDefault: Bool?
-    let ItemType: Int?
-    let DisplayOrder: Int?
-    let IsSpicy: Bool?
-    let IsLTO: Bool?
-    let LTOName: String?
-    let Size: Int?
-    let QuantityMax: Int?
-    let QuantityDefault: Int?
-    let Ingredients: [Ingredients]?
+struct ChickenPieces: Codable , Identifiable , ComboComponent{
+    var id: Int?
+    
+    var ProductID: Int?
+    
+    var Name: String?
+    
+    var Description: String?
+    
+    var ImagePath: String?
+    
+    var DefaultPrice: Int?
+    
+    var IsDefault: Bool?
+    
+    var ItemType: Int?
+    
+    var DisplayOrder: Int?
+    
+    var IsSpicy: Bool?
+    
+    var IsLTO: Bool?
+    
+    var LTOName: String?
+    
+    var Size: Int?
+    
+    var QuantityMax: Int?
+    
+    var QuantityDefault: Int?
+    
+    var Ingredients: [Ingredients]?
+    
+  private enum CodingKeys: String, CodingKey {
+        case id = "ID"
+        case ProductID = "ProductID"
+        case Name = "Name"
+        case Description = "Description"
+        case ImagePath = "ImagePath"
+        case DefaultPrice = "DefaultPrice"
+        case IsDefault = "IsDefault"
+        case ItemType = "ItemType"
+        case DisplayOrder = "DisplayOrder"
+        case IsSpicy = "IsSpicy"
+        case IsLTO = "IsLTO"
+        case LTOName = "LTOName"
+        case Size = "Size"
+        case QuantityMax = "QuantityMax"
+        case QuantityDefault = "QuantityDefault"
+        case Ingredients = "Ingredients"
+    }
 }
-struct Sizes: Codable  , Identifiable {
+struct Sizes: Codable  , Identifiable  {
     let id: Int?
     let Name: String?
     let DefaultPrice: Double?
@@ -151,41 +238,112 @@ struct Sizes: Codable  , Identifiable {
 }
 
 
-struct Drinks: Codable {
+struct Drinks: Codable  , Identifiable , ComboComponent{
+    var id: Int?
+    
+    var ProductID: Int?
+    
+    var Name: String?
+    
+    var Description: String?
+    
+    var ImagePath: String?
+    
+    var DefaultPrice: Int?
+    
+    var IsDefault: Bool?
+    
+    var ItemType: Int?
+    
+    var DisplayOrder: Int?
+    
+    var IsSpicy: Bool?
+    
+    var IsLTO: Bool?
+    
+    var LTOName: String?
+    
+    var Size: Int?
+    
+    var QuantityMax: Int?
+    
+    var QuantityDefault: Int?
+    
+    var Ingredients: [Ingredients]?
+    
 
-    let ID: Int?
-    let ProductID: Int?
-    let Name: String?
-    let Description: String?
-    let ImagePath: String?
-    let DefaultPrice: Int?
-    let IsDefault: Bool?
-    let ItemType: Int?
-    let DisplayOrder: Int?
-    let IsSpicy: Bool?
-    let IsLTO: Bool?
-    let LTOName: String?
-    let Size: Int?
-    let QuantityMax: Int?
-    let QuantityDefault: Int?
-    let Ingredients: [Ingredients]?
+   
+    
+    private enum CodingKeys: String, CodingKey {
+        case id = "ID"
+        case ProductID = "ProductID"
+        case Name = "Name"
+        case Description = "Description"
+        case ImagePath = "ImagePath"
+        case DefaultPrice = "DefaultPrice"
+        case IsDefault = "IsDefault"
+        case ItemType = "ItemType"
+        case DisplayOrder = "DisplayOrder"
+        case IsSpicy = "IsSpicy"
+        case IsLTO = "IsLTO"
+        case LTOName = "LTOName"
+        case Size = "Size"
+        case QuantityMax = "QuantityMax"
+        case QuantityDefault = "QuantityDefault"
+        case Ingredients = "Ingredients"
+    }
 }
-struct Sandwiches: Codable {
+struct Sandwiches: Codable, Identifiable , ComboComponent {
+    var id: Int?
+    
+    var ProductID: Int?
+    
+    var Name: String?
+    
+    var Description: String?
+    
+    var ImagePath: String?
+    
+    var DefaultPrice: Int?
+    
+    var IsDefault: Bool?
+    
+    var ItemType: Int?
+    
+    var DisplayOrder: Int?
+    
+    var IsSpicy: Bool?
+    
+    var IsLTO: Bool?
+    
+    var LTOName: String?
+    
+    var Size: Int?
+    
+    var QuantityMax: Int?
+    
+    var QuantityDefault: Int?
+    
+    var Ingredients: [Ingredients]?
+    
 
-    let ID: Int?
-    let ProductID: Int?
-    let Name: String?
-    let Description: String?
-    let ImagePath: String?
-    let DefaultPrice: Int?
-    let IsDefault: Bool?
-    let ItemType: Int?
-    let DisplayOrder: Int?
-    let IsSpicy: Bool?
-    let IsLTO: Bool?
-    let LTOName: String?
-    let Size: Int?
-    let QuantityMax: Int?
-    let QuantityDefault: Int?
-    let Ingredients: [Ingredients]?
+
+    private enum CodingKeys: String, CodingKey {
+        case id = "ID"
+        case ProductID = "ProductID"
+        case Name = "Name"
+        case Description = "Description"
+        case ImagePath = "ImagePath"
+        case DefaultPrice = "DefaultPrice"
+        case IsDefault = "IsDefault"
+        case ItemType = "ItemType"
+        case DisplayOrder = "DisplayOrder"
+        case IsSpicy = "IsSpicy"
+        case IsLTO = "IsLTO"
+        case LTOName = "LTOName"
+        case Size = "Size"
+        case QuantityMax = "QuantityMax"
+        case QuantityDefault = "QuantityDefault"
+        case Ingredients = "Ingredients"
+    }
 }

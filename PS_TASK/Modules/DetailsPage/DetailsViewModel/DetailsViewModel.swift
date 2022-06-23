@@ -14,15 +14,18 @@ protocol CustomizedVMProtocol {
 class DetailsViewModel : ObservableObject , CustomizedVMProtocol {
   
     @Published var ComboList : ComboResults?
-    @Published var ComboSize : Sizes?
+    @Published var ComboSize = [Sizes]()
 
     var CustomizedProductNetwork : ComboAPIProtocol = NetworkAPI()
     
     func getCustomizeProduct(comoboID: String) {
         CustomizedProductNetwork.getComboDetails(Comboid: comoboID) { result in
             self.ComboList = try? result.get()?.ComboResults
-            self.ComboSize = try? result.get()?.ComboResults?.Sizes 
-            print(result)
+          
+//            self.ComboSize =   try! result.get()?.ComboResults?.Sizes ?? []
+            DispatchQueue.main.async {
+                print(self.ComboList)
+            }
         }
     }
     

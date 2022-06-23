@@ -16,7 +16,7 @@ struct IngridentsView: View {
     }
     var body: some View {
         VStack{
-            List{
+            ScrollView{
             ForEach (ingredientsViewModel.Product?.Ingredients ?? [] ){ item in
                 KFImage(URL(string: item.ImagePath ?? ""))
                     .placeholder { Image("default") }

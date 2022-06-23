@@ -195,7 +195,7 @@ struct GridCell: View {
             }) {
                 Text("Customize")
                 }
-            .background(NavigationLink(destination: DetailsView(), isActive: $isActive) { EmptyView() })
+            .background(NavigationLink(destination: DetailsView(comboID: newResult.ComboID ?? 0), isActive: $isActive) { EmptyView() })
             .disabled(self.isCustomizable)
             .frame(height:30)
             .foregroundColor(.white)
