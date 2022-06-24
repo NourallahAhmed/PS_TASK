@@ -39,6 +39,7 @@ class HomeViewModel : ObservableObject , CategoryVMProtocol {
                 DispatchQueue.main.sync {
                     self?.NetworkState = true
                     print("Entered")
+                    print(pathUpdateHandler.status)
 
                 }
                 self?.networkApiCategory.getCategoryDetails(completion: { result in
@@ -49,6 +50,7 @@ class HomeViewModel : ObservableObject , CategoryVMProtocol {
             else{
                 DispatchQueue.main.sync {
                     self?.NetworkState = false
+                    print(pathUpdateHandler.status)
                 }
             }
         }

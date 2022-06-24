@@ -20,6 +20,8 @@ struct DetailsView: View {
         self.detailsViewModel.getCustomizeProduct(comoboID: String(comboID))
         saucesSet = Set(detailsViewModel.ComboList?.Sauces  ?? [])
         saucesList = Array(saucesSet)
+        print("NOOOOO")
+        print(saucesList)
 
     }
     var body : some View{
@@ -33,7 +35,7 @@ struct DetailsView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .shadow(color: .primary, radius: 3)
-                        .clipShape(Circle())
+//                        .clipShape(Circle())
                         .frame(width: 90, height: 90)
                         .padding(.top)
                     Spacer()
@@ -80,12 +82,12 @@ struct DetailsView: View {
 
             Section{
                 VStack{
-                    QGrid(detailsViewModel.ComboList?.ChickenPieces ?? [], columns: 2) {
+                    QGrid(Array(Set(detailsViewModel.ComboList?.ChickenPieces ?? [])), columns: 2) {
 
                         GridCell2(newResult: $0)
 
                     }
-                }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height )
+                }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             }
             
             
@@ -126,7 +128,7 @@ struct DetailsView: View {
             }
             ScrollView{
                 VStack{
-                    QGrid(detailsViewModel.ComboList?.Sandwiches ?? [], columns: 2) {
+                    QGrid(detailsViewModel.ComboList?.Sides ?? [], columns: 2) {
 
                     GridCell2(newResult: $0)
 
@@ -149,7 +151,7 @@ struct GridCell2: View {
        //MARK: IMAGE
         KFImage(URL(string: newResult.ImagePath ?? ""))
         
-        .placeholder { Image("default").frame(width: 50, height: 70)}
+        .placeholder { Image("default").frame(width: 50, height: 50)}
 
         .resizable()
         .scaledToFit()

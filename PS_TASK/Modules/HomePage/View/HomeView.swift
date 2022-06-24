@@ -221,7 +221,12 @@ struct GridCell: View {
           .onTapGesture {
               self.isActiveNav = true
           }
-        
+         
+          .refreshable {
+//              print("refresh")
+//              self.homeViewModel.getCategory()
+//              self. homeViewModel.getItems(categoryId: String( homeViewModel.CategoryList.first?.id ?? 0 ) )
+          }
 }
   }
 

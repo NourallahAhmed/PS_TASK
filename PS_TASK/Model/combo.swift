@@ -174,7 +174,8 @@ struct Sides: Codable  , ComboComponent , Identifiable{
     }
     
 }
-struct ChickenPieces: Codable , Identifiable , ComboComponent{
+struct ChickenPieces: Codable , Identifiable , ComboComponent , Hashable{
+    
     var id: Int?
     
     var ProductID: Int?
