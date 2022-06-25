@@ -261,54 +261,6 @@ struct GridCell2: View {
         
   }
 
-//MARK: SizeGridCell
-struct SizeGridCell2: View {
-    var newResult : Sizes
-    @State var counter = 0
-    var body: some View {
-    VStack() {
-        VStack{
-
-        //MARK: NAME
-        Text(newResult.Name ?? "nil" )
-            .font(Font.headline)
-        Spacer()
-        HStack{
-        //MARK: Stepper
-        //MARK: Increment
-            Button(action: {
-                counter += 1
-                
-            }) {
-                Text("+").padding()
-                    
-            }.frame(height:30)
-            .foregroundColor(.white)
-            .background(Color.blue)
-            .cornerRadius(5)
-        Text("\(counter)")
-        
-        //MARK: deincrement
-            Button(action: {
-                counter -= 1
-                
-            }) {
-                Text("-").padding()
-                    
-            }.frame(height:30)
-            .foregroundColor(.white)
-            .background(Color.blue)
-            .cornerRadius(5)
-        }.padding()
-        }  .background(Color.white)
-            .cornerRadius(16)
-            .shadow(color: Color.gray, radius: 3, x: 0, y: 3)
-            .padding(2)
-    }
-        
-  }
-}
-
 
 
 //MARK: OnePickGridCell2
