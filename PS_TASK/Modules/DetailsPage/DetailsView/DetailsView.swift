@@ -40,6 +40,7 @@ struct DetailsView: View {
             //MARK: PART 1 : NAME
             Section{
                 VStack{
+                    
                     Spacer()
                     KFImage(URL(string: self.detailsViewModel.ComboList?.ImagePath ?? "" ))
                         .placeholder { Image("default").frame(width: 50, height: 70) }
@@ -62,10 +63,16 @@ struct DetailsView: View {
             //MARK: PART 2 : Combo_Size
             
             HStack{
+                    Text("Size").bold()
+                        .padding()
+                
                 ForEach (detailsViewModel.ComboList?.Sizes ?? [] ,id: \.id) { item in
                     VStack{
                         //MARK: Image
+                        
+                        
                         VStack{
+                         
                             Spacer()
                             KFImage(URL(string:  self.detailsViewModel.ComboList?.ImagePath ?? ""))
                                 .placeholder { Image("default").frame(width: 50, height: 50) }
@@ -86,15 +93,17 @@ struct DetailsView: View {
                         Spacer()
                     }.frame(width: UIScreen.main.bounds.width / 3, height: 200)
                 }
+                
                 Spacer()
             }.background(Color.white)
             
             .frame(width: UIScreen.main.bounds.width, height: 200)
-            
+//            .border(Color.gray, width: 4)
+
             
             //MARK: PART 3 : ChickenPieces
                 VStack{
-                        Text("ChickenPieces").bold()//.visibility(self.visiabilityCondition)
+                    Text("ChickenPieces").bold().padding() //.visibility(self.visiabilityCondition)
 
                     QGrid(Array(Set(detailsViewModel.ComboList?.ChickenPieces ?? [])), columns: 2) {
 
@@ -104,14 +113,14 @@ struct DetailsView: View {
                 }
               
                 .frame(width: UIScreen.main.bounds.width, height: self.sectionHeight)
-                            
+//                .border(Color.gray ,width: 4)
             
             
             //MARK: PART 4 :  Sauces
 
             ScrollView{
                 VStack{
-                    Text("Sauces").bold()
+                    Text("Sauces").bold().padding()
 
                     QGrid(detailsViewModel.ComboList?.Sauces ?? [], columns: 2) {
 
@@ -119,6 +128,8 @@ struct DetailsView: View {
 
                     }
                 }.frame(width: UIScreen.main.bounds.width, height: self.sectionHeight)
+//                    .border(Color.gray , width: 4)
+                    
             }
             
     
@@ -127,24 +138,28 @@ struct DetailsView: View {
 
             ScrollView{
                 VStack{
-                    Text("Drinks").bold()
+                    Text("Drinks").bold().padding()
 
                     QGrid(detailsViewModel.ComboList?.Drinks ?? [], columns: 3) {
 
                     OnePickGridCell2(newResult: $0)
 
                     }
-                }.frame(width: UIScreen.main.bounds.width, height: self.sectionHeight)
+                }.frame(width: UIScreen.main.bounds.width, height: self.sectionHeight + 30 )
+//                    .border(Color.gray , width: 4)
+
             }
             ScrollView{
                 VStack{
-                    Text("Sides").bold()
+                    Text("Sides").bold().padding()
                     QGrid(detailsViewModel.ComboList?.Sides ?? [], columns: 3) {
 
                     OnePickGridCell2(newResult: $0)
 
                     }
                 }.frame(width: UIScreen.main.bounds.width, height: self.sectionHeight)
+//                    .border(Color.gray ,width: 4)
+
             }
           
         }
@@ -172,6 +187,7 @@ struct DetailsView: View {
                 
             }
         })
+ 
     }
 }
 
@@ -252,18 +268,7 @@ struct SizeGridCell2: View {
     var body: some View {
     VStack() {
         VStack{
-       //MARK: IMAGE
-//        KFImage(URL(string: newResult.ImagePath ?? ""))
-//
-//        .placeholder { Image("default").frame(width: 50, height: 50)}
-//
-//        .resizable()
-//        .scaledToFit()
-//        .padding([.horizontal, .top], 7)
-//        } .aspectRatio(contentMode: .fit)
-//            .shadow(color: .primary, radius: 3)
-//            .padding(.top)
-//
+
         //MARK: NAME
         Text(newResult.Name ?? "nil" )
             .font(Font.headline)
@@ -317,7 +322,7 @@ struct OnePickGridCell2: View {
        //MARK: IMAGE
         KFImage(URL(string: newResult.ImagePath ?? ""))
         
-                .placeholder { Image("default").frame(width: 50, height: 70)}
+        //        .placeholder { Image("default").frame(width: 30, height: 30)}
 
         .resizable()
         .scaledToFit()
@@ -333,19 +338,25 @@ struct OnePickGridCell2: View {
         HStack{
         //MARK: Picker
             Button(action: {
-                self.Picked = true
+               if self.Picked {
+                   self.Picked = false
+               }else{
+                   self.Picked = true
+               }
             }) {
-                if self.Picked {
-                Circle()
-                    .fill(.red)
-                    .frame(width: 25, height: 25)
-                    .padding(2)
-                }else{
-                    Circle()
-                        .foregroundColor(.red)
+//                if self.Picked {
+                Circle().foregroundColor(self.Picked ? Color.orange : Color.white)
                         .frame(width: 25, height: 25)
                         .padding(2)
-                }
+                        .border(Color.black)
+
+//                }else{
+//                    Circle()
+//                        .background(Color.white)
+//                        .frame(width: 25, height: 25)
+//                        .padding(2)
+//
+//                }
             }.frame(height:30)
           
   
