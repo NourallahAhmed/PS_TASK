@@ -227,7 +227,7 @@ struct ChickenPieces: Codable , Identifiable , ComboComponent , Hashable{
         case Ingredients = "Ingredients"
     }
 }
-struct Sizes: Codable  , Identifiable  {
+struct Sizes: Codable  , Identifiable , Hashable {
     let id: Int?
     let Name: String?
     let DefaultPrice: Double?

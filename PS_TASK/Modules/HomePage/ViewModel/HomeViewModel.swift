@@ -38,13 +38,13 @@ class HomeViewModel : ObservableObject , CategoryVMProtocol {
             if pathUpdateHandler.status == .satisfied {
                 DispatchQueue.main.sync {
                     self?.NetworkState = true
-                    print("Entered")
-                    print(pathUpdateHandler.status)
 
                 }
                 self?.networkApiCategory.getCategoryDetails(completion: { result in
                     self?.CategoryList = try!  result.get()?.Results ?? []
-                    print(try? result.get()?.Results)
+                    print(self?.CategoryList.map{
+                        $0.Name
+                    })
                 })
             }
             else{

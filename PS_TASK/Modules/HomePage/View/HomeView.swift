@@ -28,9 +28,9 @@ struct HomeView: View {
         if homeViewModel.NetworkState {
     NavigationView{
         VStack {
-            ScrollView{
+//            ScrollView{
                 ScrollView (.horizontal) {
-                    LazyHStack( spacing: 15){
+                   HStack( spacing: 15){
                     //MARK: Category
                         ForEach(self.homeViewModel.CategoryList) { item in
                             VStack{
@@ -71,7 +71,7 @@ struct HomeView: View {
                                
                 }
               
-            }
+//            }
             Section{
             Button(action: {
                 print("pressed")
@@ -88,11 +88,14 @@ struct HomeView: View {
             .frame(maxWidth: .infinity)
             }
         }.navigationBarTitle(Text(self.title),displayMode: .inline)
-//            .navigationBarTitle {
-//                print("clicked")
-//            } label: {
-//                Image(systemName: "bag.fill")
-//            }
+            .toolbar(content: {
+                Button(){
+                    print("clicked")
+                } label: {
+                    Image(systemName: "bag.fill")
+                }
+            })
+        
     }  .refreshable {
         
         self.homeViewModel.getCategory()
@@ -119,8 +122,15 @@ struct GridCell: View {
     @State var isCustomizable : Bool = false
     @State var isActive : Bool = false
     @State var isActiveNav : Bool = false
-
     @State var IsCustomColor : Color = Color.blue
+    
+    @State var CustomColor2 : Color = Color.red
+    @State var CustomColor1 : Color = Color.white
+
+//    @State var NotClickedColor : Color = Color.white
+
+    @State var IsSandwishClicked : Bool = true
+    @State var IsMealClicked : Bool = true
 
   var body: some View {
     VStack() {
@@ -145,10 +155,10 @@ struct GridCell: View {
         
         Text(newResult.Name ?? "nil" )
             .font(Font.headline)
-//
+
 //        MARK: Empty from network
-//        Text( "\(newResult.Calories ?? "nil") CAL" )
-//            .font(Font.headline)
+        Text( "\(newResult.Calories ?? "200") CAL" )
+            .font(Font.headline)
         
         Text(newResult.Description ?? "nil").multilineTextAlignment(.center)
             .font(Font.subheadline)
@@ -157,27 +167,58 @@ struct GridCell: View {
         HStack{
             Spacer(minLength: 5)
             VStack{
-                Circle()
-                    .fill(.red)
-                    .frame(width: 25, height: 25)
-                    .padding(2)
+                Button(action: {
+                    print("Round Action")
+                    if IsSandwishClicked{
+                        self.CustomColor1 = Color.red
+                        self.CustomColor2 = Color.white
+                        self.IsSandwishClicked = false
+                    }else{
+                        self.IsSandwishClicked = true
+                        self.CustomColor2 = Color.red
+                        self.CustomColor1 = Color.white
+                    }
+                }) {
+                    Text("")
+                        .frame(width: 25, height: 25)
+                        .background(self.CustomColor1)
+                        .border(Color.black)
+
+                        .clipShape(Circle())
+                }
                 Text("Sandwish")
             }
             Spacer(minLength: 5)
             VStack{
-                Circle()
-                    .strokeBorder(.black)
-                    .frame(width: 25, height: 25)
-                    .padding(2)
+                Button(action: {
+                    print("Round Action")
+
+                    if IsMealClicked{
+                        self.CustomColor1 = Color.white
+                        self.CustomColor2 = Color.red
+                        self.IsMealClicked = false
+                    }
+                    else{
+                        self.IsMealClicked = true
+                        self.CustomColor2 = Color.white
+                        self.CustomColor1 = Color.red
+                    }
+                }) {
+                    Text("")
+                        .frame(width: 25, height: 25)
+                        .border(Color.black)
+                        .background(self.CustomColor2)
+                        .clipShape(Circle())
+                }
                 Text("meal")
 
             }
             Spacer(minLength: 5)
         }
         
-//        Text("2.4 DB").multilineTextAlignment(.center)
-//            .font(Font.headline)
-//            .foregroundColor(.red)
+        Text("2.4 DB").multilineTextAlignment(.center)
+            .font(Font.headline)
+            .foregroundColor(.red)
 
         HStack{
             Button(action: {

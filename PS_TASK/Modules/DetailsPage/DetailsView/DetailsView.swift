@@ -14,17 +14,28 @@ struct DetailsView: View {
     var comboID : Int?
     var saucesList = [Sauces]()
     var saucesSet = Set<Sauces> ()
+    var sectionHeight = 360.0
+    @State var IsSelected : String?
+    @State var IsReset : Bool = false
+    var visiabilityCondition : ViewVisibility = .gone
     @ObservedObject var detailsViewModel  = DetailsViewModel()
+    
+    
+    
     init(comboID: Int){
         self.comboID = comboID
         self.detailsViewModel.getCustomizeProduct(comoboID: String(comboID))
         saucesSet = Set(detailsViewModel.ComboList?.Sauces  ?? [])
         saucesList = Array(saucesSet)
-        print("NOOOOO")
-        print(saucesList)
+
+//        if detailsViewModel.ComboList?.ChickenPieces?.isEmpty == true {
+//            print("ENTER")
+//            visiabilityCondition = .gone
+//        }
 
     }
     var body : some View{
+        VStack{
         ScrollView{
             //MARK: PART 1 : NAME
             Section{
@@ -35,107 +46,132 @@ struct DetailsView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .shadow(color: .primary, radius: 3)
-//                        .clipShape(Circle())
-                        .frame(width: 90, height: 90)
+                        .frame(width: 130, height: 130)
                         .padding(.top)
                     Spacer()
                     Text(self.detailsViewModel.ComboList?.Name ?? "nil")
+
                         .padding(.bottom)
+                    Text("Customize")
+                        .padding(.bottom)
+                      
                 }
             
             }
             
             //MARK: PART 2 : Combo_Size
-            /*
-            Section{
-            LazyHStack(){
-                ForEach (detailsViewModel.ComboSize) { item in
+            
+            HStack{
+                ForEach (detailsViewModel.ComboList?.Sizes ?? [] ,id: \.id) { item in
                     VStack{
-                        
                         //MARK: Image
                         VStack{
                             Spacer()
                             KFImage(URL(string:  self.detailsViewModel.ComboList?.ImagePath ?? ""))
-                                .placeholder { Image("default").frame(width: 50, height: 70) }
+                                .placeholder { Image("default").frame(width: 50, height: 50) }
                                 .resizable()
-//                                .frame(width: 100, height: 130)
-                                .background(Color.white)
+                                .background(IsSelected == item.Name ? Color.orange : Color.white)
                                 .cornerRadius(16)
                                 .shadow(color: Color.gray, radius: 3, x: 0, y: 3)
                                 .padding(2)
                                 .onTapGesture {
                                     print("\(item.Name)")
+                                        IsSelected = item.Name
                                 }
-                            
                         }.shadow(color: Color.gray, radius: 3, x: 0, y: 3)
                             .padding(2)
+                           
                         Spacer()
                         Text( item.Name ?? "nil")
                         Spacer()
-                    }
+                    }.frame(width: UIScreen.main.bounds.width / 3, height: 200)
                 }
                 Spacer()
             }.background(Color.white)
-        }
-           */
+            
+            .frame(width: UIScreen.main.bounds.width, height: 200)
+            
+            
             //MARK: PART 3 : ChickenPieces
-
-            Section{
                 VStack{
+                        Text("ChickenPieces").bold()//.visibility(self.visiabilityCondition)
+
                     QGrid(Array(Set(detailsViewModel.ComboList?.ChickenPieces ?? [])), columns: 2) {
 
-                        GridCell2(newResult: $0)
+                        GridCell2(newResult: $0, IsReset: self.$IsReset)
 
-                    }
-                }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-            }
-            
+                    }//.visibility(self.visiabilityCondition)
+                }
+              
+                .frame(width: UIScreen.main.bounds.width, height: self.sectionHeight)
+                            
             
             
             //MARK: PART 4 :  Sauces
 
             ScrollView{
                 VStack{
+                    Text("Sauces").bold()
+
                     QGrid(detailsViewModel.ComboList?.Sauces ?? [], columns: 2) {
 
-                   GridCell2(newResult: $0)
+                   GridCell2(newResult: $0 , IsReset: self.$IsReset)
 
                     }
-                }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height )
+                }.frame(width: UIScreen.main.bounds.width, height: self.sectionHeight)
             }
             
-            
+    
             
             //MARK: PART 5 :  Drinks
 
             ScrollView{
                 VStack{
-                    QGrid(detailsViewModel.ComboList?.Drinks ?? [], columns: 2) {
+                    Text("Drinks").bold()
 
-                    GridCell2(newResult: $0)
+                    QGrid(detailsViewModel.ComboList?.Drinks ?? [], columns: 3) {
+
+                    OnePickGridCell2(newResult: $0)
 
                     }
-                }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height )
+                }.frame(width: UIScreen.main.bounds.width, height: self.sectionHeight)
             }
             ScrollView{
                 VStack{
-                    QGrid(detailsViewModel.ComboList?.Sides ?? [], columns: 2) {
+                    Text("Sides").bold()
+                    QGrid(detailsViewModel.ComboList?.Sides ?? [], columns: 3) {
 
-                    GridCell2(newResult: $0)
-
-                    }
-                }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height )
-            }
-            ScrollView{
-                VStack{
-                    QGrid(detailsViewModel.ComboList?.Sides ?? [], columns: 2) {
-
-                    GridCell2(newResult: $0)
+                    OnePickGridCell2(newResult: $0)
 
                     }
-                }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height )
+                }.frame(width: UIScreen.main.bounds.width, height: self.sectionHeight)
             }
+          
         }
+            Section{
+            Button(action: {
+                print("pressed")
+            }) {
+                
+                Text("Add To Cart")
+                    .font(Font.headline)
+                    .bold()
+                    .frame(maxWidth: .infinity)
+                    
+            }.frame(height:25)
+            .foregroundColor(.white)
+            .background(Color.blue)
+            .frame(maxWidth: .infinity)
+            }
+        }.toolbar(content: {
+            Button(){
+                print("clicked")
+                self.IsReset = true
+            } label: {
+                Text("Reset")
+                
+            }
+        })
     }
 }
 
@@ -144,6 +180,7 @@ struct DetailsView: View {
 //MARK: GridCell
 struct GridCell2: View {
     var newResult : ComboComponent
+    @Binding var IsReset : Bool 
     @State var counter = 0
     var body: some View {
     VStack() {
@@ -158,9 +195,75 @@ struct GridCell2: View {
         .padding([.horizontal, .top], 7)
         } .aspectRatio(contentMode: .fit)
             .shadow(color: .primary, radius: 3)
-//            .frame(width: 90, height: 90)
             .padding(.top)
        
+        //MARK: NAME
+        Text(newResult.Name ?? "nil" )
+            .font(Font.headline)
+        Spacer()
+        HStack{
+        //MARK: Stepper
+        //MARK: Increment
+          
+        
+        //MARK: deincrement
+            Button(action: {
+                if counter != 0{
+                counter -= 1
+                }
+                
+            }) {
+                Text("-").padding()
+                    
+            }.frame(height:30)
+            .foregroundColor(.white)
+            .background(Color.blue)
+            .cornerRadius(5)
+        Text("\(counter)")
+
+        Button(action: {
+            counter += 1
+            
+        }) {
+            Text("+").padding()
+                
+        }.frame(height:30)
+        .foregroundColor(.white)
+        .background(Color.blue)
+        .cornerRadius(5)
+        }  .background(Color.white)
+            .cornerRadius(16)
+            .shadow(color: Color.gray, radius: 3, x: 0, y: 3)
+            .padding(2)
+        
+        }.padding()
+//        if IsReset {
+//            self.counter = 0 
+//        }
+
+    }
+        
+  }
+
+//MARK: SizeGridCell
+struct SizeGridCell2: View {
+    var newResult : Sizes
+    @State var counter = 0
+    var body: some View {
+    VStack() {
+        VStack{
+       //MARK: IMAGE
+//        KFImage(URL(string: newResult.ImagePath ?? ""))
+//
+//        .placeholder { Image("default").frame(width: 50, height: 50)}
+//
+//        .resizable()
+//        .scaledToFit()
+//        .padding([.horizontal, .top], 7)
+//        } .aspectRatio(contentMode: .fit)
+//            .shadow(color: .primary, radius: 3)
+//            .padding(.top)
+//
         //MARK: NAME
         Text(newResult.Name ?? "nil" )
             .font(Font.headline)
@@ -199,27 +302,28 @@ struct GridCell2: View {
     }
         
   }
+}
 
 
 
-//MARK: SaucesGridCell
-struct SaucesGridCell2: View {
-    var newResult : Sauces
+//MARK: OnePickGridCell2
+struct OnePickGridCell2: View {
+    var newResult : ComboComponent
     @State var counter = 0
+    @State var Picked = false
     var body: some View {
-    VStack() {
+    VStack{
         VStack{
        //MARK: IMAGE
         KFImage(URL(string: newResult.ImagePath ?? ""))
         
-        .placeholder { Image("default").frame(width: 50, height: 70)}
+                .placeholder { Image("default").frame(width: 50, height: 70)}
 
         .resizable()
         .scaledToFit()
         .padding([.horizontal, .top], 7)
         } .aspectRatio(contentMode: .fit)
             .shadow(color: .primary, radius: 3)
-            .frame(width: 90, height: 90)
             .padding(.top)
        
         //MARK: NAME
@@ -227,36 +331,60 @@ struct SaucesGridCell2: View {
             .font(Font.headline)
         Spacer()
         HStack{
-        //MARK: Stepper
-        //MARK: Increment
+        //MARK: Picker
             Button(action: {
-                counter += 1
-                
+                self.Picked = true
             }) {
-                Text(" + ").padding()
-                    
+                if self.Picked {
+                Circle()
+                    .fill(.red)
+                    .frame(width: 25, height: 25)
+                    .padding(2)
+                }else{
+                    Circle()
+                        .foregroundColor(.red)
+                        .frame(width: 25, height: 25)
+                        .padding(2)
+                }
             }.frame(height:30)
-            .foregroundColor(.white)
-            .background(Color.blue)
-            .cornerRadius(5)
-        Text("\(counter)")
-        
-        //MARK: deincrement
-            Button(action: {
-                counter -= 1
-                
-            }) {
-                Text(" - ").padding()
-                    
-            }.frame(height:30)
-            .foregroundColor(.white)
-            .background(Color.blue)
-            .cornerRadius(5)
-        }.padding()
-        }  .background(Color.white)
-            .cornerRadius(16)
-            .shadow(color: Color.gray, radius: 3, x: 0, y: 3)
-            .padding(2)
+          
+  
     }
-        
+    }
   }
+}
+extension View {
+  @ViewBuilder func visibility(_ visibility: ViewVisibility) -> some View {
+    if visibility != .gone {
+      if visibility == .visible {
+        self
+      } else {
+        hidden()
+      }
+    }
+  }
+}
+enum ViewVisibility: CaseIterable {
+  case visible, // view is fully visible
+       invisible, // view is hidden but takes up space
+       gone // view is fully removed from the view hierarchy
+}
+/*
+ Button(action:{
+     print("\(item.Name)")
+     if IsSelected ?? false {
+       IsSelected = false
+     }else{
+       IsSelected = true
+     }
+ }{
+ KFImage(URL(string:  self.detailsViewModel.ComboList?.ImagePath ?? ""))
+     .placeholder { Image("default").frame(width: 50, height: 50) }
+     .resizable()
+    
+     
+ } .background(IsSelected ?? false ? Color.orange : Color.white)
+     .cornerRadius(16)
+     .shadow(color: Color.gray, radius: 3, x: 0, y: 3)
+     .padding(2)
+ */
